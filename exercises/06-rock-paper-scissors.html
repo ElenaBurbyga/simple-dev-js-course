@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <button onclick="
+    userChoice = 'rock';
+    playTheGame();
+    "
+  >Rock</button>
+
+  <button onclick="
+    userChoice = 'paper';
+    playTheGame();
+"
+  >Paper</button>
+
+  <button onclick="
+    userChoice = 'scissors';
+    playTheGame();
+"
+  >Scissors</button>
+
+  <button onclick="
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem('score')"
+  >Reset Score</button>
+
+  <script>
+    let score = JSON.parse(localStorage.getItem('score')) || {
+      wins: 0,
+      losses: 0,
+      ties: 0
+    };
+
+    const choices = ['paper', 'rock', 'scissors']
+    let computerChoice; 
+    let userChoice;
+    let result;
+    const getComputerChoice = () => {
+      randomChoice = choices[Math.floor(Math.random() * choices.length)];
+      return randomChoice;
+    }
+
+    const getResult = () => {
+      const indexDiff = choices.indexOf(computerChoice) - choices.indexOf(userChoice)
+      if (indexDiff === 0) {
+        result = 'It\'s a tie!';
+        score.ties += 1;
+      } else if (indexDiff === -1 || indexDiff === 2){
+        result = 'Computer wins!';
+        score.losses += 1;
+       } else {
+        result = 'You win!';
+        score.wins += 1;
+       }
+    }
+
+    const playTheGame = () => {
+      computerChoice = getComputerChoice();
+      getResult();
+
+      localStorage.setItem('score', JSON.stringify(score));
+
+      alert(`You picked ${userChoice}. Computer picked ${computerChoice}. ${result}
+        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+
+    }
+  </script>
+</body>
+</html>
