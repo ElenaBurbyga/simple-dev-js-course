@@ -34,7 +34,7 @@
     }
 
     const getResult = () => {
-      indexDiff = choices.indexOf(computerChoice) - choices.indexOf(userChoice)
+      const indexDiff = choices.indexOf(computerChoice) - choices.indexOf(userChoice)
       if (indexDiff === 0) {
         console.log (`Computer: ${computerChoice} User: ${userChoice} Result: It\'s a draw!`)
       } else if (indexDiff === -1 || indexDiff === 2){
