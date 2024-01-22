@@ -28,12 +28,12 @@
     const choices = ['paper', 'rock', 'scissors']
     let computerChoice; 
     let userChoice;
-    getComputerChoice = () => {
+    const getComputerChoice = () => {
       randomChoice = choices[Math.floor(Math.random() * choices.length)];
       return randomChoice;
     }
 
-    getResult = () => {
+    const getResult = () => {
       indexDiff = choices.indexOf(computerChoice) - choices.indexOf(userChoice)
       if (indexDiff === 0) {
         console.log (`Computer: ${computerChoice} User: ${userChoice} Result: It\'s a draw!`)
@@ -44,7 +44,7 @@
        }
     }
 
-    playTheGame = () => {
+    const playTheGame = () => {
       computerChoice = getComputerChoice();
       getResult();
     }
