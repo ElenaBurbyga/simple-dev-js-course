@@ -24,11 +24,16 @@
 "
   >Scissors</button>
 
+  <p class="final-result"></p>
+  <p class="players-choices"></p>
+  <p class="js-score"></p>
+
   <button onclick="
   score.wins = 0;
   score.losses = 0;
   score.ties = 0;
-  localStorage.removeItem('score')"
+  localStorage.removeItem('score')
+  updateScore()"
   >Reset Score</button>
 
   <script>
@@ -67,9 +72,17 @@
 
       localStorage.setItem('score', JSON.stringify(score));
 
+      updateScore()
+
       alert(`You picked ${userChoice}. Computer picked ${computerChoice}. ${result}
         Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 
+    }
+
+  const updateScore = () => {
+      document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+      document.querySelector('.final-result').innerHTML = result;
+      document.querySelector('.players-choices').innerHTML = `You picked ${userChoice}. Computer picked ${computerChoice}.`;
     }
   </script>
 </body>
